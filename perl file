@@ -1,0 +1,721 @@
+use Data::Dumper;
+use User;
+use ADMINNEW;
+use WORKFLOWNEW;
+use PSESSION;
+use Time::Piece;
+use File::Basename;
+use List::Util qw(min max); 
+use strict;
+use warnings;
+use MIME::Base64;
+
+	my $curr_date = uc(localtime->strftime('%Y-%m-%d'));
+	my $query = CGI->new();
+	my $CGISESSID = $query->param('CGISESSID');
+	my $psession = PSESSION->new();
+	my $sessref = $psession->getSessionData($CGISESSID);
+	my $MSD_SESSION = $sessref->{"MSD_SESSION"};
+	my $dispname = $sessref->{"dispname"};
+	my $username = $sessref->{"userid"};
+	my $projectid = $sessref->{"proj"};
+	my $user = User->new();
+	my $BASEPATH = $user->getAppBaseUrl();
+	 
+	my $admin = ADMINNEW->new($projectid , $username);
+	my $wfobj = WORKFLOWNEW->new($projectid , $username);
+	my $imgpath1=$BASEPATH."/macro/".$projectid."/images/loader.gif";	
+	my $csspath01=$BASEPATH."/macro/".$projectid."/css/bootstrap.min.css";
+	my $csspath02=$BASEPATH."/macro/".$projectid."/css/bootstrap-theme.css";
+	my $csspath03=$BASEPATH."/macro/".$projectid."/css/elegant-icons-style.css";
+	my $csspath04=$BASEPATH."/macro/".$projectid."/css/font-awesome.min.css";
+	my $csspath05=$BASEPATH."/macro/".$projectid."/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css";
+	my $csspath06=$BASEPATH."/macro/".$projectid."/assets/fullcalendar/fullcalendar/fullcalendar.css";
+	my $csspath07=$BASEPATH."/macro/".$projectid."/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css";
+	my $csspath08=$BASEPATH."/macro/".$projectid."/css/owl.carousel.css";
+	my $csspath09=$BASEPATH."/macro/".$projectid."/css/jquery-jvectormap-1.2.2.css";
+	my $csspath10=$BASEPATH."/macro/".$projectid."/css/fullcalendar.css";
+	my $csspath11=$BASEPATH."/macro/".$projectid."/css/widgets.css"; 
+	my $csspath12=$BASEPATH."/macro/".$projectid."/css/style.css";
+	my $csspath13=$BASEPATH."/macro/".$projectid."/css/style-responsive.css";
+	my $csspath14=$BASEPATH."/macro/".$projectid."/css/xcharts.min.css";
+	my $csspath15=$BASEPATH."/macro/".$projectid."/css/jquery-ui-1.10.4.min.css";
+	
+	 
+	
+	my $jspath01=$BASEPATH."/macro/".$projectid."/js/jquery.js";
+	my $jspath02=$BASEPATH."/macro/".$projectid."/js/jquery-ui-1.10.4.min.js";
+	my $jspath03=$BASEPATH."/macro/".$projectid."/js/jquery-1.8.3.min.js";
+	my $jspath04=$BASEPATH."/macro/".$projectid."/js/jquery-ui-1.9.2.custom.min.js";
+	
+	my $jspath05=$BASEPATH."/macro/".$projectid."/js/bootstrap.min.js";
+	my $jspath06=$BASEPATH."/macro/".$projectid."/js/jquery.scrollTo.min.js";
+	my $jspath07=$BASEPATH."/macro/".$projectid."/js/jquery.nicescroll.js";
+	my $jspath08=$BASEPATH."/macro/".$projectid."/assets/jquery-knob/js/jquery.knob.js";
+	my $jspath09=$BASEPATH."/macro/".$projectid."/js/jquery.sparkline.js";
+	my $jspath10=$BASEPATH."/macro/".$projectid."/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js";
+	my $jspath11=$BASEPATH."/macro/".$projectid."/js/owl.carousel.js"; 
+	
+	my $jspath12=$BASEPATH."/macro/".$projectid."/js/fullcalendar.min.js";
+	my $jspath13=$BASEPATH."/macro/".$projectid."/assets/fullcalendar/fullcalendar/fullcalendar.js";
+	my $jspath14=$BASEPATH."/macro/".$projectid."/js/calendar-custom.js";
+	my $jspath15=$BASEPATH."/macro/".$projectid."/js/jquery.rateit.min.js";
+
+	
+	my $jspath16=$BASEPATH."/macro/".$projectid."/js/jquery.customSelect.min.js";
+	my $jspath17=$BASEPATH."/macro/".$projectid."/assets/chart-master/Chart.js";
+	my $jspath18=$BASEPATH."/macro/".$projectid."/js/scripts.js";
+	
+	my $jspath19=$BASEPATH."/macro/".$projectid."/js/sparkline-chart.js";
+	my $jspath20=$BASEPATH."/macro/".$projectid."/js/easy-pie-chart.js";
+	my $jspath21=$BASEPATH."/macro/".$projectid."/js/jquery-jvectormap-1.2.2.min.js";
+	my $jspath22=$BASEPATH."/macro/".$projectid."/js/jquery-jvectormap-world-mill-en.js";
+	my $jspath23=$BASEPATH."/macro/".$projectid."/js/xcharts.min.js";
+	my $jspath24=$BASEPATH."/macro/".$projectid."/js/jquery.autosize.min.js";
+	my $jspath25=$BASEPATH."/macro/".$projectid."/js/jquery.placeholder.min.js";
+	my $jspath26=$BASEPATH."/macro/".$projectid."/js/gdp-data.js";
+	my $jspath27=$BASEPATH."/macro/".$projectid."/js/morris.min.js";
+	my $jspath28=$BASEPATH."/macro/".$projectid."/js/sparklines.js";
+	my $jspath29=$BASEPATH."/macro/".$projectid."/js/charts.js";
+	my $jspath30=$BASEPATH."/macro/".$projectid."/js/jquery.slimscroll.min.js";
+	my $jspath31=$BASEPATH."/macro/".$projectid."/assets/ckeditor/ckeditor.js";
+	my $jspath32=$BASEPATH."/macro/".$projectid."/js/bootstrap-wysiwyg.js";
+	my $jspath33=$BASEPATH."/macro/".$projectid."/js/bootstrap-wysiwyg-custom.js";
+	my $jspath34=$BASEPATH."/macro/".$projectid."/js/jquery.hotkeys.js";
+	
+	my $jspath35=$BASEPATH."/macro/".$projectid."/plugins/datatables/jquery.dataTables.min.js";
+	my $jspath36=$BASEPATH."/macro/".$projectid."/plugins/datatables/dataTables.bootstrap.min.js";
+
+
+	
+	my $table_name  = "P".$projectid."_mm_employee_master";
+	my $table_name0 = "P".$projectid."_mm_system_param";
+	my $table_name01 = "P".$projectid."_issues";
+	my $table_name1='P'.$projectid.'_mm_module';
+	my $table_name2='P'.$projectid.'_mm_aggregate'; 
+	my $table_name3='P'.$projectid.'_mm_add_vmt';
+	
+   
+print qq[
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+  <meta name="author" content="GeeksLabs">
+  <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+  <link rel="shortcut icon" href="img/favicon.png">
+
+  <title>VMT</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="$csspath01" rel="stylesheet">
+  <!-- bootstrap theme -->
+  <link href="$csspath02" rel="stylesheet">
+  <!--external css-->
+  <!-- font icon -->
+  <link href="$csspath03" rel="stylesheet" />
+  <link href="$csspath04" rel="stylesheet" />
+  <!-- full calendar css-->
+  <link href="$csspath05" rel="stylesheet" />
+  <link href="$csspath06" rel="stylesheet" />
+  <!-- easy pie chart-->
+  <link href="$csspath07" rel="stylesheet" type="text/css" media="screen" />
+  <!-- owl carousel -->
+  <link rel="stylesheet" href="$csspath08" type="text/css">
+  <link href="$csspath09" rel="stylesheet">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="$csspath10">
+  <link href="$csspath11" rel="stylesheet">
+  <link href="$csspath12" rel="stylesheet">
+  <link href="$csspath13" rel="stylesheet" />
+  <link href="$csspath14" rel="stylesheet">
+  <link href="$csspath15" rel="stylesheet">
+  <style>
+  .box-body{
+  padding:10px;
+  }
+  td{
+  color:#000;
+  }
+  label {
+    font-weight: 600;
+	}
+	.panel-heading{
+	background: #2583c2;
+	color:#fff;
+	}
+	.panel.panel-primary .panel-heading{
+	background: #2583c2;
+	color:#fff;
+	}
+	.module-body{
+	background:steelblue;
+	color:#fff;
+	padding:0px 5px;
+	border-radius: 5px;
+	margin-bottom:5px;
+	box-shadow: 1px 1px 5px 0 rgb(23 67 89 / 50%);
+	}
+	.form-control{
+	color:#000;
+	}
+	#regiration_form fieldset:not(:first-of-type) {
+    display: none;
+  }
+  </style>
+  <!-- =======================================================
+    Theme Name: NiceAdmin
+    Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+    Author: BootstrapMade
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+   <script type="text/javascript">
+   function doEncryption(str)
+	{
+		var encodedString = btoa(str);
+		return encodedString;
+	}
+	
+	function changeVmt(srl)
+	{
+		var srl=srl;
+		var vmt = document.getElementById("vmt_"+srl).value;
+		
+		
+			var xmlhttp;
+			if (window.XMLHttpRequest)
+			{
+			  xmlhttp=new XMLHttpRequest();
+			}
+			else
+			{
+			  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			var ajax_flag="42";
+			var combo_str=ajax_flag+"NOW_SPLIT"+vmt;
+			var encrypted_value=doEncryption(combo_str);
+			var url="macrocall.cgi?macro=vmt_ajax&CGISESSID=$CGISESSID&encrypted_value="+encrypted_value;
+			xmlhttp.open("GET",url,true);
+			xmlhttp.send(); 
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				  {
+					console.log(xmlhttp.responseText);
+					var res=xmlhttp.responseText; 
+					var arr=res.split("!@!"); 
+				
+					document.getElementById("attendance_body").innerHTML=arr[0];
+					document.getElementById("mom_details").innerHTML=arr[1];
+					document.getElementById("prod_line").innerHTML=arr[2];
+					<!-- #document.getElementById("attendance_body").innerHTML=xmlhttp.responseText; -->
+					
+				 
+				  }
+			}
+		
+		
+	}
+	
+	
+	function getBody()
+	{
+		\$("#loading").show();
+		var productline = document.getElementById("prod_line").value;
+		var project  = document.getElementById("project_1" ).value;
+		var vmt  = document.getElementById("vmt_1" ).value;
+		var dr  = document.getElementById("dr_1" ).value;	
+		
+			var xmlhttp;
+			if (window.XMLHttpRequest)
+			{
+			  xmlhttp=new XMLHttpRequest();
+			}
+			else
+			{
+			  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			var ajax_flag="39";
+			var combo_str=ajax_flag+"NOW_SPLIT"+project+"NOW_SPLIT"+vmt+"NOW_SPLIT"+dr;
+			var encrypted_value=doEncryption(combo_str);
+			var url="macrocall.cgi?macro=vmt_ajax&CGISESSID=$CGISESSID&encrypted_value="+encrypted_value;
+			xmlhttp.open("GET",url,true);
+			xmlhttp.send(); 
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				  { 
+				  \$("#loading").hide();
+					 document.getElementById("map-body").innerHTML=xmlhttp.responseText;
+				  }
+				   
+			}
+		
+		
+		
+	}
+	function openSearchPage(id)
+		{
+		
+			window.open("macrocall.cgi?macro=user_search&CGISESSID=$CGISESSID&encrypted_value="+doEncryption(id)+"","_blank",'left=200,top=300,width=700,height=400,toolbar=0,resizable=0');
+		}
+	
+	
+	
+	function setModalData(srl,vmt,status)
+	{
+		document.getElementById("upd_srl").value=srl;
+		document.getElementById("upd_vmt").value=vmt;
+		document.getElementById("upd_status").value=status;
+	}
+	function saveMom()
+	{
+		document.getElementById("div1").innerHTML="<center><img src='$imgpath1'></center>";
+				var total_attendance=document.getElementById("totalattendance").value;
+				var total_mom=document.getElementById("totalrow").value;
+				
+				var vmt=document.getElementById("vmt_1").value;
+				var productline = document.getElementById("prod_line").value;
+				var meeting_date=document.getElementById("meeting_date").value;
+				var agenda=document.getElementById("agenda").value;
+				var all_total_attendance="";
+				var all_total_mom="";
+				
+				
+				for (var i=1;i<=total_attendance;i++)
+				{
+					var dept  = document.getElementById("dept_"+i).value;
+					var emp_id  = document.getElementById("emp_id_"+i).value;
+					var att  = document.getElementById("attendance_"+i).value;
+					
+					if(all_total_attendance == "" )
+					{  
+					all_total_attendance=dept+"!!"+emp_id+"!!"+att;					
+					}
+					else
+					{  
+					all_total_attendance=all_total_attendance+"@"+dept+"!!"+emp_id+"!!"+att;
+					}
+				}
+				
+		
+				for (var j=1;j<=total_mom;j++)
+				{
+					var proj_srl  = document.getElementById("proj_srl_"+j).value;
+					var issue  = document.getElementById("issue_"+j).value;
+					var forward  = document.getElementById("forward_"+j).value;
+					var cost_time  = document.getElementById("cost_time_"+j).value;
+					var resp  = document.getElementById("resp_"+j).value;
+					var esc  = document.getElementById("esc_"+j).value;
+					var target  = document.getElementById("target_"+j).value;
+					var closure  = document.getElementById("closure_"+j).value;
+					var status  = document.getElementById("status_"+j).value;
+					var decision  = document.getElementById("decision_"+j).value;
+					var meeting  = document.getElementById("meeting_id_"+j).value;
+					if(all_total_mom == "" )
+					{  
+					all_total_mom=proj_srl+"!!"+issue+"!!"+forward+"!!"+cost_time+"!!"+resp+"!!"+esc+"!!"+target+"!!"+closure+"!!"+status+"!!"+decision+"!!"+meeting;					
+					}
+					else
+					{  
+					all_total_mom=all_total_mom+"@"+proj_srl+"!!"+issue+"!!"+forward+"!!"+cost_time+"!!"+resp+"!!"+esc+"!!"+target+"!!"+closure+"!!"+status+"!!"+decision+"!!"+meeting;
+					}
+				}
+				
+			
+		
+		if(vmt == "")
+		{alert("Please Choose VMT");return;}
+		if(productline == "")
+		{alert("Please Choose Productline");return;}
+		
+ 			// var xmlhttp;
+			// if (window.XMLHttpRequest)
+			// {
+			//   xmlhttp=new XMLHttpRequest();
+			// }
+			// else
+			// {
+			//   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			// }
+			// xmlhttp.onreadystatechange=function()
+			// {
+			// 	if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			// 	  { 
+			// 		 document.getElementById("div1").innerHTML=xmlhttp.responseText;
+			// 	  }
+			// 	   else
+			// 	  {
+				  
+			// 	  }
+			// }
+			
+			var mystring=confirm("Are you sure to Create this Meeting?");
+			if(mystring)
+			{
+			var ajax_flag="43";
+			
+			var combo_str=ajax_flag+"NOW_SPLIT"+vmt+"NOW_SPLIT"+meeting_date+"NOW_SPLIT"+agenda+"NOW_SPLIT"+all_total_attendance+"NOW_SPLIT"+all_total_mom+"NOW_SPLIT"+productline;
+			var encrypted_value=doEncryption(combo_str);
+
+			\$.ajax({
+				url: 'macrocall.cgi',
+				type: 'POST',
+				data: {'macro':'vmt_ajax','CGISESSID':"$CGISESSID",'encrypted_value':encrypted_value},
+				dataType: 'html',
+				success: function(response){
+					console.log(response);
+					document.getElementById("div1").innerHTML=response;
+				
+				}
+			});
+
+			
+			}
+	}
+	function saveData()
+	{
+		var srl=document.getElementById("upd_vmt").value;
+		
+ 		var upd_status=document.getElementById("upd_status").value;
+
+		var xmlhttp;
+			if (window.XMLHttpRequest)
+			{
+			  xmlhttp=new XMLHttpRequest();
+			}
+			else
+			{
+			  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				  { 
+					 document.getElementById("div3").innerHTML=xmlhttp.responseText;
+				  }
+				   else
+				  {
+				  document.getElementById("div3").innerHTML="<center><img src='$imgpath1'></center>";
+				  }
+			}
+			var ajax_flag="15";
+			var combo_str=ajax_flag+"NOW_SPLIT"+srl+"NOW_SPLIT"+upd_status;
+			var encrypted_value=doEncryption(combo_str);	
+		  	var url="macrocall.cgi?macro=vmt_ajax&CGISESSID=$CGISESSID&encrypted_value="+encrypted_value;
+			xmlhttp.open("GET",url,true);
+			xmlhttp.send();
+			document.getElementById("div3").style.display="block";
+	}
+
+
+  </script>
+  
+</head>
+
+<body  >
+  <!-- container section start -->
+  <section id="container" class="" >
+ 
+    <!--main content start-->
+     <!--  <section id="main-content" >
+   <section class="wrapper">-->
+	   
+	<div class="row">
+ 
+			<div class="col-lg-12">
+			
+                <div class="panel">
+                  <header class="panel-heading">
+                  MINUTES OF MEETING
+                  </header>
+				  
+					<div class="panel-body">
+				 	 	 
+						<div id="row">	
+						
+							<div class="box-body">
+							<div class="progress">
+								<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+							  </div>
+							  <form id="regiration_form">
+							  <fieldset>
+								<h2>Step 1: Create your Meeting</h2>
+								<div class="row" >
+								<div class="col-md-6">
+									<div class="form-group">
+									<label for="vmt">VMT </label>
+									<select  class="form-control" id="vmt_1" name="vmt[]" onchange="changeVmt(1);" >
+												<option value="">Select VMT</option>
+												];
+												my $table_name1='P'.$projectid.'_mm_register_vmt';
+												my $table_name11='P'.$projectid.'_mm_add_vmt';
+												my $table_name2='P'.$projectid.'_mm_vmt_team';
+												
+												my $Ref11=$admin->getQueryData(query=>"SELECT DISTINCT VMT_ID FROM $table_name2 WHERE DEPT_SRL='D7' AND (EMP_ID1='$username' OR EMP_ID2='$username' OR EMP_ID3='$username' OR EMP_ID4='$username')");
+												if(@$Ref11)
+												{
+												foreach my $elem(@$Ref11)
+												{
+													my $VMT_ID=$elem->{'VMT_ID'};
+												
+													my $Ref22=$admin->getQueryData(query=>"SELECT DISTINCT OLD_VMT_ID,VMT_NAME FROM $table_name11 WHERE VMT_ID='$VMT_ID'");
+													my $VMT_NAME=$Ref22->[0]->{'VMT_NAME'};
+													my $OLD_VMT_NAME=$Ref22->[0]->{'OLD_VMT_ID'};
+												
+													
+												
+												
+												print qq
+												[
+												<option value="$VMT_ID">$VMT_NAME($OLD_VMT_NAME)</option>
+												];
+												
+													
+												}
+												}
+												
+												print qq
+												[
+												</select>
+									
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+									<label for="prod_line">Productline</label>
+									<select  class="form-control" id="prod_line" name="prod_line[]">
+												<option value="">Select Productline</option>
+												];
+												
+												
+												print qq
+												[
+												</select>
+									
+									</div>
+								</div>
+								<div class="col-md-6">
+								<div class="form-group">
+								<label for="meeting_date">Date</label>
+								<input type="date" class="form-control" id="meeting_date" placeholder="Date" max="$curr_date">
+								</div>
+								</div>
+								<div class="col-md-6">
+								<div class="form-group">
+								<label for="agenda">Key Agenda</label>
+								<textarea rows="6" cols="50" class="form-control" id="agenda" name="agenda" ></textarea>
+								</div>
+								</div>
+								</div>
+								<input type="button" name="create-btn" class="next btn btn-info" value="Next" />
+							  </fieldset>
+							  <fieldset>
+								
+								<h2 style="display:inline-block;"> Step 2: Add MOM</h2>
+								<span style="float:right;"><input type="button" name="create-btn" id="addMore" class="btn btn-success" value="ADD MORE+" /></span>
+								<div id="mom_details">
+									
+								</div>
+								
+								<input type="button" name="previous" class="previous btn btn-default" value="Previous" />
+								<input type="button" name="next" class="next btn btn-info" value="Next" />
+							  </fieldset>
+							  <fieldset>
+								<h2>Step 3: Attendance Information</h2>
+">								<div class="row" id="attendance_body">
+								];
+									
+									print qq[
+								</div>
+								
+								<input type="button" name="previous" class="previous btn btn-default" value="Previous" />
+								<input type="button" name="submit" class="submit btn btn-success" value="Submit" onclick="saveMom();"/>
+							  </fieldset>
+							  </form>
+							</div>
+							<div class="box-body" id="map-body">
+							
+							</div>
+						
+							</div>
+							<div id="div1"></div>	
+							<Br>
+							<div class="box-footer">
+							
+							
+							
+							</div>
+							
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		<!-- </div> -->
+	<!-- <div class="row"> -->
+		
+				
+			<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+											 			
+			</div>
+			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+											 			
+			</div>
+		<div id="loading" style="margin-bottom:20px;display:none;"><center><img src='$imgpath1'></center></div>	
+		<div id="map-body">
+			
+		</div>
+	</div>
+			<!-- </div> -->
+		<!-- </div>	 -->
+	<!-- </div>		 -->
+	   
+      
+        <!-- statics end -->
+ 
+      <!--</section>
+       
+    </section>-->
+    <!--main content end-->
+  </section>
+  <!-- container section start -->
+
+  <!-- javascripts -->
+ 
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  
+	<script src="$jspath01"></script>
+	<script src="$jspath02"></script>
+	<script src="$jspath03"></script>
+	<script type="text/javascript" src="$jspath04"></script>
+	  <!-- bootstrap -->
+	  <script src="$jspath05"></script>
+	  <!-- nice scroll -->
+	  <script src="$jspath06"></script>
+	  <script src="$jspath07" type="text/javascript"></script>
+	  <!-- charts scripts -->
+	  <script src="$jspath08"></script>
+	  <script src="$jspath09" type="text/javascript"></script>
+	  <script src="$jspath10"></script>
+	  <script src="$jspath11"></script>
+	  <!-- jQuery full calendar -->
+	  <script src="$jspath12"></script>
+		<!-- Full Google Calendar - Calendar -->
+		<script src="$jspath13"></script>
+		<!--script for this page only-->
+		<script src="$jspath14"></script>
+		<script src="$jspath15"></script>
+		<!-- custom select -->
+		<script src="$jspath16"></script>
+		<script src="$jspath17"></script>
+
+		<!--custome script for all page-->
+		<script src="$jspath18"></script>
+		<!-- custom script for this page-->
+		<script src="$jspath19"></script>
+		<script src="$jspath20"></script>
+		<script src="$jspath21"></script>
+		<script src="$jspath22"></script>
+		<script src="$jspath23"></script>
+		<script src="$jspath24"></script>
+		<script src="$jspath25"></script>
+		<script src="$jspath26"></script>
+		<script src="$jspath27"></script>
+		<script src="$jspath28"></script>
+		<script src="$jspath29"></script>
+		<script src="$jspath30"></script>
+		<script type="text/javascript" src="$jspath31"></script>
+		<script src="$jspath32"></script>
+		<script src="$jspath33"></script>
+		<script src="$jspath34"></script>
+		<script src="$jspath35"></script>
+		<script src="$jspath36"></script>
+ <script>
+  \$\(function () {
+    \$\("#example1").DataTable();
+    \$\('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
+<script>
+	\$\(document).ready(function(){
+	
+	
+		\$\("#addMore").on('click',function(){
+			var count=\$\("#totalrow").val();
+			count++;
+			\$\("#totalrow").val(count);
+			var htmlcode='';
+			htmlcode+='<div class="row" id="row_'+count+'" style="margin-bottom:20px;background:aliceblue;">';
+			htmlcode+='<input type="hidden" name="meeting_id" id="meeting_id_'+count+'" value=""/>';
+			htmlcode+='<div class="col-md-2"><div class="form-group"><label for="proj_srl">Project Name/SRL</label><input type="text" class="form-control" name="proj_srl" id="proj_srl_'+count+'" placeholder="Project SRL"></div></div>';
+			htmlcode+='<div class="col-md-4"><div class="form-group"><label for="issue">Issue</label><textarea rows="3" class="form-control" name="issue" id="issue_'+count+'" placeholder="Issue Description"></textarea></div></div>';
+			htmlcode+='<div class="col-md-4"><div class="form-group"><label for="forward">Way Forward</label><textarea rows="3" class="form-control" name="forward" id="forward_'+count+'" placeholder="Action Plan/way forward"></textarea></div></div>';
+			htmlcode+='<div class="col-md-2"><div class="form-group"><label for="cost_time">Qual/Capex/Cost/Time</label><input type="text" class="form-control" name="cost_time" id="cost_time_'+count+'" placeholder="Cost/quality/capex/time"></div></div><div class="clearfix"></div>';
+			htmlcode+='<div class="col-md-2"><div class="form-group"><label for="resp">Responsibility</label><input type="text" class="form-control" name="resp" id="resp_'+count+'" placeholder="Resp"></div></div>';
+			htmlcode+='<div class="col-md-2"><div class="form-group"><label for="esc">Esc Required</label><input type="text" class="form-control" name="esc" id="esc_'+count+'" placeholder="Escalation Required(Person/Forum)"></div></div>';
+			htmlcode+='<div class="col-md-2"><div class="form-group"><label for="target">Target</label><input type="date" class="form-control" name="target" id="target_'+count+'" ></div></div>';
+			htmlcode+='<div class="col-md-2"><div class="form-group"><label for="closure">Closue</label><input type="date" class="form-control" name="closure" id="closure_'+count+'" ></div></div>';
+			htmlcode+='<div class="col-md-1"><div class="form-group"><label for="status">Status</label><select  class="form-control" id="status_'+count+'" name="status"><option value="">--Select status ---</option><option value="R">R</option><option value="Y">Y</option><option value="G">G</option></select></div></div>';
+			htmlcode+='<div class="col-md-2"><div class="form-group"><label for="closure">Decision</label><textarea rows="3" class="form-control" name="decision" id="decision_'+count+'" placeholder="Descision Taken"></textarea></div></div>';
+			htmlcode+='<div class="col-md-1"><button type="button" class="btn btn-danger removeRow" id="'+count+'"  style="margin-top:25px">-</button></div>';
+			htmlcode+='</div>';
+			\$\("#mom_details").append(htmlcode);
+		});
+		\$\(document).on('click','.removeRow',function(){
+			var count=\$\("#totalrow").val();
+			var rowid=\$\(this).attr('id');
+			
+			\$\('#row_'+rowid).remove();
+			count--;
+			\$\("#totalrow").val(count);
+		});
+	});
+	</script>
+<script>
+	\$(document).ready(function(){
+  var current = 1,current_step,next_step,steps;
+  steps = \$("fieldset").length;
+  \$(".next").click(function(){
+    current_step = \$(this).parent();
+    next_step = \$(this).parent().next();
+    next_step.show();
+    current_step.hide();
+    setProgressBar(++current);
+  });
+  \$(".previous").click(function(){
+    current_step = \$(this).parent();
+	console.log(current_step);
+    next_step = \$(this).parent().prev();
+	console.log(next_step);
+    next_step.show();
+    current_step.hide();
+    setProgressBar(--current);
+  });
+  setProgressBar(current);
+  // Change progress bar action
+  function setProgressBar(curStep){
+    var percent = parseFloat(100 / steps) * curStep;
+    percent = percent.toFixed();
+    \$(".progress-bar")
+      .css("width",percent+"%")
+      .html(percent+"%");   
+  }
+});
+ </script>
+</body>
+
+</html>
+
+];
+1;
