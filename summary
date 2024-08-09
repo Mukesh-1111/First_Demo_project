@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+  <style>
+      @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+      *{
+        margin: 0;
+        padding: 0;
+        outline: none;
+        font-family: 'Poppins', sans-serif;
+      }
+      body{
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        overflow: hidden;
+        background: url("bg.png"), -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
+      }
+      ::selection{
+        color: #fff;
+        background: #d43f8d;
+      }
+      /* HEADER */
+      .conf-configurator-layout{
+      width: 100%;
+      height: 100%;
+      }
+      .main-section-wrapper {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      }
+      .conf-head-wrapper {
+      z-index: 1;
+      position: fixed;
+      width: 100%;
+      }
+      .conf-configurator-wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      }
+      .conf-lob-selection-title {
+          padding: 4px 4%;
+      }
+      .conf-inner-title {
+          display: flex;
+          align-items: center;
+      }
+      .conf-sec-1 {
+          width: 20%;
+      }
+      .conf-lob-title {
+          width: 75%;
+      }
+  
+      .conf-back-arrow {
+          border-radius: 12px;
+          background: #E3EDF7;
+        
+          display: inline-flex;
+          padding: 6px 10px;
+          align-items: center;
+          gap: 8px;
+          border: 1px solid white;
+      }
+      img, svg {
+          vertical-align: middle;
+      }
+  
+      .conf-back-arrow span {
+          color: var(--tata-blue, #307FE2);
+          text-align: right;
+          font-family: uni-neue-regular;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 20px;
+      }
+      
+      .conf-btn-mob {
+          display: none;
+      }
+      .conf-sec-2 {
+          width: 60%;
+          height: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: stretch;
+      }
+      .conf-gr-btn, .conf-save-option, .conf-tml-logo, .conf-navHeaderTitle {
+      cursor: pointer;
+      }
+      .conf-sec-2 img {
+          cursor: pointer;
+      }
+      .conf-ver-line {
+          margin: 8px 10px;
+          height: 35px;
+          border-left: 2px solid #27292F;
+      }
+      .conf-sec-2 .conf-tml-logo {
+          width: 128px;
+          height: 32px;
+          margin-right: 0%;
+          margin-top: 10px;
+      }
+      .conf-ver-line {
+          margin: 8px 10px;
+          height: 35px;
+          border-left: 2px solid #27292F;
+      }
+      .conf-gr-btn, .conf-save-option, .conf-tml-logo, .conf-navHeaderTitle {
+      cursor: pointer;
+      }
+      .conf-navHeaderTitle {
+          margin-top: 10px;
+          color:white;
+          font-family: uni-neue-regular;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 32px;
+      }
+      .conf-sec-3 {
+      height: 100%;
+      width: 20%;
+      display: flex;
+      justify-content: right;
+      }
+      .conf-gr-btn, .conf-save-option, .conf-tml-logo, .conf-navHeaderTitle {
+          cursor: pointer;
+      }
+      .conf-save-option span {
+          color: var(--tata-blue, #307FE2);
+          text-align: right;
+          font-family: uni-neue-regular;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 20px;
+      }
+      .conf-save-option {
+      width: auto;
+      display: inline-flex;
+      padding: 6px 10px;
+      align-items: flex-start;
+      gap: 8px;
+      border-radius: 12px;
+      background: #E3EDF7; 
+      }
+       .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .card-body, .card-footer {
+        text-align: center;
+      }
+      .card {
+        width: 100%; /* Set a fixed width for the cards */
+        margin: 0 10px; /* Optional: space between cards */
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+      }
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px;
+      }
+      .card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+      }
+      .image-container{
+        height: 300px;
+        padding: 10px;
+      }
+      .image-container img{
+        height: 100%;
+        width: 100%;
+      }
+  </style>
+
+ 
+
+
+
+<body>
+    <section id="container" class="" >
+        <!-- header -->
+        <div class="conf-container">
+            <div class="section">
+              <div class="conf-configurator-layout ng-tns-c125-1">
+                <div class="conf-configurator-wrapper ng-tns-c125-1">
+                  <div class="conf-head-wrapper ng-tns-c125-1">
+                    <div class="nav-header-section ng-tns-c125-1">
+                      <div class="conf-lob-selection-title">
+                        <div class="conf-inner-title">
+                          <div class="conf-sec-1">
+                            <div class="conf-lob-title">
+                              <div class="conf-back-arrow">
+                                <img alt="back-btn" src="https://d1t6fngbwb760h.cloudfront.net/prod/public_images/common/arrow-back.svg">
+                                <span class="conf-btn-desk" onclick="window.location.href='index1.html'">Back to Home</span>
+                                <span class="conf-btn-mob"> Home</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="conf-sec-2">
+                            <span  class="conf-ver-line"></span>
+                            <img  class="conf-tml-logo" src="https://d1t6fngbwb760h.cloudfront.net/prod/public_images/common/tml_logo.svg">
+                            <span  class="conf-ver-line"></span>
+                            <p  class="conf-navHeaderTitle">HCV Configurator</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+            
+        </div> 
+
+        <!-- summary -->
+        <div class="container" style="background-color: #fff; margin-top:80px; max-width: 95%; border-radius: 20px;">
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="panel">
+                      <div class="panel-body">
+                          <form id="registration_form">
+                              <div class="tab-content mt-4">
+                                  <div role="tabpanel" class="tab-pane fade show active" id="dr">
+                                      <div class="row">
+                                          <div class="col-md-12">
+                                              <label for="Engine" style="margin-top: 30px; font-weight: bold; font-size: larger;">Summary</label>
+                                              <!-- Engine Cards -->
+                                              <div class="container-fluid mt-4">
+                                                  <div class="d-flex justify-content-start overflow-auto" style="flex-wrap: nowrap;">
+                                                      <div class="card me-3" style="min-width: 300px;">
+                                                          <div class="image-container">
+                                                              <img src="img/Picture4.png" class="card-img-top" alt="Card Image 1">
+                                                          </div>
+                                                          <div class="card-body">
+                                                              <h5 class="card-title">Engine Type: CUMMINS ISBe6.7 300hp BSVI</h5>
+                                                              <p class="card-text">Cost $</p>
+                                                          </div>
+                                                      </div>
+                                                      <div class="card me-3" style="min-width: 300px;">
+                                                          <div class="image-container">
+                                                              <img src="img/Picture2.png" class="card-img-top" alt="Card Image 2">
+                                                          </div>
+                                                          <div class="card-body">
+                                                              <h5 class="card-title">Engine Type: Cummins Isbe 6.7L 250HP OBD-II</h5>
+                                                              <p class="card-text">Cost $</p>
+                                                          </div>
+                                                      
+                                                      </div>
+                                                      <div class="card me-3" style="min-width: 300px;">
+                                                          <div class="image-container">
+                                                              <img src="img/chassis2.png" class="card-img-top" alt="Card Image 3">
+                                                          </div>
+                                                          <div class="card-body">
+                                                              <h5 class="card-title">Engine Type: CUMMINS ISBe6.7 300hp BSVI</h5>
+                                                              <p class="card-text">Cost $</p>
+                                                          </div>
+                                                      
+                                                      </div>
+                                                      <div class="card me-3" style="min-width: 300px;">
+                                                          <div class="image-container">
+                                                              <img src="img/Picture4.png" class="card-img-top" alt="Card Image 4">
+                                                          </div>
+                                                          <div class="card-body">
+                                                              <h5 class="card-title">Engine Type: Cummins Isbe 6.7L 250HP OBD-II</h5>
+                                                              <p class="card-text">Cost $</p>
+                                                          </div>
+                                                       
+                                                      </div>
+                                                      <div class="card me-3" style="min-width: 300px;">
+                                                          <div class="image-container">
+                                                              <img src="img/Picture6.png" class="card-img-top" alt="Card Image 5">
+                                                          </div>
+                                                          <div class="card-body">
+                                                              <h5 class="card-title">Engine Type: Cummins Isbe 6.7L 250HP OBD-II</h5>
+                                                              <p class="card-text">Cost $</p>
+                                                          </div>
+                                                    
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="text-center mt-2">
+                                          <button type="button" class="btn btn-primary" onclick="window.location.href='index1.html'">
+                                              Submit
+                                          </button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                      <div class="box-body" id="map-body"></div>
+                      <div id="div1"></div>
+                      <br>
+                      <div class="box-footer"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      </section>
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      
+</body>
+</html>
