@@ -1,624 +1,1966 @@
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title>Multi Step Form | CodingNepal</title>
-      <link rel="stylesheet" href="style.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-   </head>
-   <style>
-    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  outline: none;
-  font-family: 'Poppins', sans-serif;
-}
-body{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  overflow: hidden;
-  background: url("bg.png"), -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
-}
-::selection{
-  color: #fff;
-  background: #d43f8d;
-}
-.container{
-  width: 100%;
-  background: #fff;
-  text-align: center;
-  border-radius: 5px;
-  padding: 50px 35px 10px 35px;
-}
-.container header{
-  font-size: 35px;
-  font-weight: 600;
-  margin: 0 0 30px 0;
-}
-.container .form-outer{
-  width: 100%;
-  overflow: hidden;
-}
-.container .form-outer form{
-  display: flex;
-  width: 400%;
-}
-.form-outer form .page{
-  width: 25%;
-  transition: margin-left 0.3s ease-in-out;
-}
-.form-outer form .page .title{
-  text-align: left;
-  font-size: 25px;
-  font-weight: 500;
-}
-.form-outer form .page .field{
-  width: 100%;
-  height: 45px;
-  margin: 45px 0;
-  display: flex;
-  position: relative;
-}
-form .page .field .label{
-  position: absolute;
-  top: -30px;
-  font-weight: 500;
-}
-form .page .field input{
-  height: 100%;
-  width: 100%;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
-  padding-left: 15px;
-  font-size: 18px;
-}
-form .page .field select{
-  width: 100%;
-  padding-left: 10px;
-  font-size: 17px;
-  font-weight: 500;
-}
-     form .page .field button{
-  width: 100%;
-  height: calc(100% + 5px);
-  border: none;
-  background: #d33f8d;
-  margin-top: -20px;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: 0.5s ease;
-}
-form .page .field button:hover{
-  background: #000;
-}
-form .page .btns button{
-  margin-top: -20px!important;
-}
-form .page .btns button.prev{
-  margin-right: 3px;
-  font-size: 17px;
-}
-form .page .btns button.next{
-  margin-left: 3px;
-}
-.container .progress-bar{
-  display: flex;
-  margin: 40px 0;
-  user-select: none;
-}
-.container .progress-bar .step{
-  text-align: center;
-  width: 100%;
-  position: relative;
-}
-.container .progress-bar .step p{
-  font-weight: 500;
-  font-size: 18px;
-  color: #000;
-  margin-bottom: 8px;
-}
-.progress-bar .step .bullet{
-  height: 25px;
-  width: 25px;
-  border: 2px solid #000;
-  display: inline-block;
-  border-radius: 50%;
-  /* position: relative; */
-  transition: 0.2s;
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 25px;
-}
-.progress-bar .step .bullet.active{
-  border-color: #d43f8d;
-  background: #d43f8d;
-}
-.progress-bar .step .bullet span{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.progress-bar .step .bullet.active span{
-  display: none;
-}
-.progress-bar .step .bullet:before,
-.progress-bar .step .bullet:after{
-  position: absolute;
-  content: '';
-  bottom: 11px;
-  right: -51px;
-  height: 3px;
-  width: 89%;
-  background: #262626;
-  margin-right: -25%;
-
-}
-.progress-bar .step .bullet.active:after{
-  background: #d43f8d;
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: animate 0.3s linear forwards;
-}
-@keyframes animate {
-  100%{
-    transform: scaleX(1);
-  }
-}
-.progress-bar .step:last-child .bullet:before,
-.progress-bar .step:last-child .bullet:after{
-  display: none;
-}
-.progress-bar .step p.active{
-  color: #d43f8d;
-  transition: 0.2s linear;
-}
-.progress-bar .step .check{
-  position: absolute;
-  left: 50%;
-  top: 70%;
-  font-size: 15px;
-  transform: translate(-50%, -50%);
-  display: none;
-}
-.progress-bar .step .check.active{
-  display: block;
-  color: #fff;
-}
-
-
-/* HEADER */
-.conf-configurator-layout{
-    width: 100%;
-    height: 100%;
-    }
-    .main-section-wrapper {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    }
-    .conf-head-wrapper {
-    z-index: 1;
-    position: fixed;
-    width: 100%;
-    }
-    .conf-configurator-wrapper {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    }
-    .conf-lob-selection-title {
-        padding: 4px 4%;
-    }
-    .conf-inner-title {
-        display: flex;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+  <style>
+      @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+      *{
+        margin: 0;
+        padding: 0;
+        outline: none;
+        font-family: 'Poppins', sans-serif;
+      }
+      body{
         align-items: center;
-    }
-    .conf-sec-1 {
-        width: 20%;
-    }
-    .conf-lob-title {
-        width: 75%;
-    }
- 
-    .conf-back-arrow {
-        border-radius: 12px;
-        background: #E3EDF7;
-      
-        display: inline-flex;
-        padding: 6px 10px;
-        align-items: center;
-        gap: 8px;
-        border: 1px solid white;
-    }
-    img, svg {
-        vertical-align: middle;
-    }
- 
-    .conf-back-arrow span {
-        color: var(--tata-blue, #307FE2);
-        text-align: right;
-        font-family: uni-neue-regular;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 20px;
-    }
-    
-    .conf-btn-mob {
-        display: none;
-    }
-    .conf-sec-2 {
-        width: 60%;
-        height: 50px;
-        display: flex;
         justify-content: center;
-        align-items: stretch;
-    }
-    .conf-gr-btn, .conf-save-option, .conf-tml-logo, .conf-navHeaderTitle {
-    cursor: pointer;
-    }
-    .conf-sec-2 img {
-        cursor: pointer;
-    }
-    .conf-ver-line {
-        margin: 8px 10px;
-        height: 35px;
-        border-left: 2px solid #27292F;
-    }
-    .conf-sec-2 .conf-tml-logo {
-        width: 128px;
-        height: 32px;
-        margin-right: 0%;
-        margin-top: 10px;
-    }
-    .conf-ver-line {
-        margin: 8px 10px;
-        height: 35px;
-        border-left: 2px solid #27292F;
-    }
-    .conf-gr-btn, .conf-save-option, .conf-tml-logo, .conf-navHeaderTitle {
-    cursor: pointer;
-    }
-    .conf-navHeaderTitle {
-        margin-top: 10px;
-        color:white;
-        font-family: uni-neue-regular;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 32px;
-    }
-    .conf-sec-3 {
-    height: 100%;
-    width: 20%;
-    display: flex;
-    justify-content: right;
-    }
-    .conf-gr-btn, .conf-save-option, .conf-tml-logo, .conf-navHeaderTitle {
-        cursor: pointer;
-    }
-    .conf-save-option span {
-        color: var(--tata-blue, #307FE2);
-        text-align: right;
-        font-family: uni-neue-regular;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 20px;
-    }
-    .conf-save-option {
-    width: auto;
-    display: inline-flex;
-    padding: 6px 10px;
-    align-items: flex-start;
-    gap: 8px;
-    border-radius: 12px;
-    background: #E3EDF7;
-    
-}
+        min-height: 100vh;
+        overflow: hidden;
+        background: url("bg.png"), -webkit-linear-gradient(bottom, #0250c5, #d43f8d);
+      }
+      ::selection{
+        color: #fff;
+        background: #d43f8d;
+      }
+      /* HEADER */
+      .conf-configurator-layout{
+      width: 100%;
+      height: 100%;
+      }
+      .main-section-wrapper {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      }
+      .conf-head-wrapper {
+      z-index: 1;
+      position: fixed;
+      width: 100%;
+      }
+      .conf-configurator-wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      }
+      .conf-lob-selection-title {
+          padding: 4px 4%;
+      }
+      .conf-inner-title {
+          display: flex;
+          align-items: center;
+      }
+      .conf-sec-1 {
+          width: 20%;
+      }
+      .conf-lob-title {
+          width: 75%;
+      }
+  
+      .conf-back-arrow {
+          border-radius: 12px;
+          background: #E3EDF7;
+        
+          display: inline-flex;
+          padding: 6px 10px;
+          align-items: center;
+          gap: 8px;
+          border: 1px solid white;
+      }
+      img, svg {
+          vertical-align: middle;
+      }
+  
+      .conf-back-arrow span {
+          color: var(--tata-blue, #307FE2);
+          text-align: right;
+          font-family: uni-neue-regular;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 20px;
+      }
+      
+      .conf-btn-mob {
+          display: none;
+      }
+      .conf-sec-2 {
+          width: 60%;
+          height: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: stretch;
+      }
+      .conf-gr-btn, .conf-save-option, .conf-tml-logo, .conf-navHeaderTitle {
+      cursor: pointer;
+      }
+      .conf-sec-2 img {
+          cursor: pointer;
+      }
+      .conf-ver-line {
+          margin: 8px 10px;
+          height: 35px;
+          border-left: 2px solid #27292F;
+      }
+      .conf-sec-2 .conf-tml-logo {
+          width: 128px;
+          height: 32px;
+          margin-right: 0%;
+          margin-top: 10px;
+      }
+      .conf-ver-line {
+          margin: 8px 10px;
+          height: 35px;
+          border-left: 2px solid #27292F;
+      }
+      .conf-gr-btn, .conf-save-option, .conf-tml-logo, .conf-navHeaderTitle {
+      cursor: pointer;
+      }
+      .conf-navHeaderTitle {
+          margin-top: 10px;
+          color:white;
+          font-family: uni-neue-regular;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 32px;
+      }
+      .conf-sec-3 {
+      height: 100%;
+      width: 20%;
+      display: flex;
+      justify-content: right;
+      }
+      .conf-gr-btn, .conf-save-option, .conf-tml-logo, .conf-navHeaderTitle {
+          cursor: pointer;
+      }
+      .conf-save-option span {
+          color: var(--tata-blue, #307FE2);
+          text-align: right;
+          font-family: uni-neue-regular;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 20px;
+      }
+      .conf-save-option {
+      width: auto;
+      display: inline-flex;
+      padding: 6px 10px;
+      align-items: flex-start;
+      gap: 8px;
+      border-radius: 12px;
+      background: #E3EDF7; 
+      }
+  </style>
 
-   </style>
-   <body>
-    <div class="conf-container">
-    <div class="section">
-      <div class="conf-configurator-layout ng-tns-c125-1">
-        <div class="conf-configurator-wrapper ng-tns-c125-1">
-          <div class="conf-head-wrapper ng-tns-c125-1">
-            <div class="nav-header-section ng-tns-c125-1">
-              <div class="conf-lob-selection-title">
-                <div class="conf-inner-title">
-                  <div class="conf-sec-1">
-                    <div class="conf-lob-title">
-                      <div class="conf-back-arrow">
-                        <img alt="back-btn" src="https://d1t6fngbwb760h.cloudfront.net/prod/public_images/common/arrow-back.svg">
-                        <span class="conf-btn-desk" onclick="window.location.href='index1.html'">Back to Home</span>
-                        <span class="conf-btn-mob"> Home</span>
+  <!-- dropdown css -->
+  <style>
+      #first_container{
+          /* max-width: 100% ; */
+          background: #fff;
+          border-radius: 25px;
+          margin-left: 40px;
+          margin-right: 40px;
+          margin-left: 35px;
+          margin-right: 35px;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          margin-top: 5%;
+        }
+  </style>
+
+  <!-- form -->
+  <style>
+      .box-body{
+      padding:10px;
+      }
+      td{
+      color:#000;
+      }
+      label {
+        font-weight: 600;
+        }
+        .panel-heading{
+        background: #2583c2;
+        color:#fff;
+        }
+        .panel.panel-primary .panel-heading{
+        background: #2583c2;
+        color:#fff;
+        }
+        .module-body{
+        background:steelblue;
+        color:#fff;
+        padding:0px 5px;
+        border-radius: 5px;
+        margin-bottom:5px;
+        box-shadow: 1px 1px 5px 0 rgb(23 67 89 / 50%);
+        }
+        .form-control{
+        color:#000;
+        }
+        #regiration_form fieldset:not(:first-of-type) {
+        display: none;
+      }
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .card-body, .card-footer {
+        text-align: center;
+      }
+      .card {
+        width: 100%; /* Set a fixed width for the cards */
+        margin: 0 10px; /* Optional: space between cards */
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+        border-radius: 25px;
+        border: 0.1px solid #d3d3d391;
+      }
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px;
+      }
+      .card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+      }
+      .image-container{
+        height: 300px;
+        padding: 10px;
+      }
+      .image-container img{
+        height: 100%;
+        width: 100%;
+      }
+  </style>
+
+<body style="overflow-y: scroll;">
+    <section id="container" class="" >
+        <!-- header -->
+        <div class="conf-container">
+            <div class="section">
+              <div class="conf-configurator-layout ng-tns-c125-1">
+                <div class="conf-configurator-wrapper ng-tns-c125-1">
+                  <div class="conf-head-wrapper ng-tns-c125-1">
+                    <div class="nav-header-section ng-tns-c125-1">
+                      <div class="conf-lob-selection-title">
+                        <div class="conf-inner-title">
+                          <div class="conf-sec-1">
+                            <div class="conf-lob-title">
+                              <div class="conf-back-arrow">
+                                <img alt="back-btn" src="https://d1t6fngbwb760h.cloudfront.net/prod/public_images/common/arrow-back.svg">
+                                <span class="conf-btn-desk" onclick="window.location.href=''">Back to Home</span>
+                                <span class="conf-btn-mob"> Home</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="conf-sec-2">
+                            <span  class="conf-ver-line"></span>
+                            <img  class="conf-tml-logo" src="https://d1t6fngbwb760h.cloudfront.net/prod/public_images/common/tml_logo.svg">
+                            <span  class="conf-ver-line"></span>
+                            <p  class="conf-navHeaderTitle">HCV Configurator</p>
+                          </div>
+                          <!-- <div  class="conf-sec-3">
+                            <div  class="conf-save-option">
+                              <span  class="conf-btn-desk">Save Your Build</span>
+                              <span  class="conf-btn-mob">Save</span>
+                            </div>
+                          </div> -->
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div class="conf-sec-2">
-                    <!-- <p class="conf-navHeaderTitle">
-                      <span >
-                        <img src="https://buytrucknbus-osp3dev.home.tatamotors/assets/images/osp_logo_dark.png">
-                      </span>
-                    </p> -->
-                    <span  class="conf-ver-line"></span>
-                    <img  class="conf-tml-logo" src="https://d1t6fngbwb760h.cloudfront.net/prod/public_images/common/tml_logo.svg">
-                    <span  class="conf-ver-line"></span>
-                    <p  class="conf-navHeaderTitle">HCV Configurator</p>
-                  </div>
-                  <div  class="conf-sec-3">
-                    <!---->
-                    <div  class="conf-save-option">
-                      <span  class="conf-btn-desk">Save Your Build</span>
-                      <span  class="conf-btn-mob">Save</span>
-                    </div>
-                  </div>
+                
                 </div>
               </div>
             </div>
-          </div>
-        
-        </div>
-      </div>
-    </div>
-  </div>      
-    <div class="container">
-        <header>Vehicle Configuration</header>
-        <div class="progress-bar ">
-            <div class="step">
-            <p>
-                Fuel
-            </p>
-            <div class="bullet">
-                <span>1</span>
-            </div>
-            <div class="check fas fa-truck"></div>
-            </div>
-            <div class="step">
-            <p>
-                Operation
-            </p>
-            <div class="bullet">
-                <span>2</span>
-            </div>
-            <div class="check fas fa-truck"></div>
-            </div>
-            <div class="step">
-            <p>
-                Vehicle Category
-            </p>
-            <div class="bullet">
-                <span>3</span>
-            </div>
-            <div class="check fas fa-truck"></div>
-            </div>
-            <div class="step">
-                <p>
-                    Vehicle Weight
-                </p>
-                <div class="bullet">
-                    <span>4</span>
-                </div>
-                <div class="check fas fa-truck"></div>
-            </div>
-            <div class="step">
-                <p>
-                    Cabin Type
-                </p>
-                <div class="bullet">
-                    <span>5</span>
-                </div>
-                <div class="check fas fa-truck"></div>
-            </div>
-            <div class="step">
-                <p>
-                    Summary 
-                </p>
-                <div class="bullet">
-                    <span>6</span>
-                </div>
-                <div class="check fas fa-truck"></div>
-            </div>
-            <div class="step">
-            <p>
-                Submit
-            </p>
-            <div class="bullet">
-                <span>4</span>
-            </div>
-            <div class="check fas fa-truck"></div>
-            </div>
-        </div>
-        <div class="form-outer">
-            <form action="#">
-            <div class="page slide-page">
-                <div class="title">
-                    Fuel Info:
-                </div>
-                <div class="field">
-                        <div class="label">
-                            Fuel Type
-                        </div>
-                        <select>
-                            <option value="">--Select--</option>
-                            <option value="DIESEL">DIESEL</option>
+            
+          </div> 
+
+          <!-- drop down -->
+          <div class="container" style="max-width: 100%;" >
+            <div class=""id="first_container">
+                <div class="filter-cat row" style="margin-left: 20px;">
+                    <div class="col col-md-2 col-xs-6">
+                        <label for="Fuel" style="margin-right: 105px;">Fuel</label>
+                        <select class="form-control filter-select">
+                            <option value="">--select--</option>
+                            <option value="DEISEL">DEISEL</option>
                             <option value="CNG">CNG</option>
                             <option value="LNG">LNG</option>
+                            <option value="LNG">EV</option>
+                            <option value="LNG">H2ICE</option>
                         </select>
                     </div>
-                <div class="field">
-                    <button class="firstNext next">Next</button>
+                    <div class="col col-md-2 col-xs-6">
+                        <label for="Operations" style="margin-right: 105px;">Operations</label>
+                        <select class="form-control filter-select">
+                            <option value="">--select--</option>
+                            <option value="E-commerce">E-commerce</option>
+                            <option value="Road&Infra">Road&Infra</option>
+                            <option value="Mining">Mining</option>
+                            <option value="Stone quarry">Stone quarry</option>
+                        </select>
+                    </div>
+                    <div class="col col-md-2 col-xs-6">
+                        <label for="Vehicle category">Vehicle category</label>
+                        <select class="form-control filter-select">
+                            <option value="">--select--</option>
+                            <option value="Truck">Truck</option>
+                            <option value="Tractor">Tractor</option>
+                            <option value="Tipper">Tipper</option>
+                        </select>
+                    </div>
+                    <div class="col col-md-2 col-xs-6">
+                        <label for="Vehicle Weight">Vehicle Tonnage</label>
+                        <select  id="vehicle-tonnage"class="form-control filter-select">
+                            <option value="">--select--</option>
+                            <option value="">19-Ton</option>
+                            <option value="">26-Ton</option>
+                            <option value="">28-Ton</option>
+                            <option value="">31-Ton</option>
+                            <option value="">35-Ton</option>
+                            <option value="">40-Ton</option>
+                            <option value="">42-Ton</option>
+                            <option value="">46-Ton</option>
+                            <option value="">48-Ton</option>
+                            <option value="">49-Ton</option>
+                            <option value="">55-Ton</option>
+                        </select>
+                    </div>
+                    <div class="col col-md-2 col-xs-6">
+                        <label for="Cabin Type">Cabin Type</label>
+                        <select class="form-control filter-select">
+                            <option value="">--select--</option>
+                            <option value="">Prima - Sleeper Cabin</option>
+                            <option value="">Prima - Day Cabin</option>
+                            <option value="">Signa - Sleeper</option>
+                            <option value="">Signa - Day Cabin</option>
+                            <option value="">1516 Cowl - Sleeper</option>
+                            <option value="">1516 Cowl - Non Sleeper</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col col-md-2 col-xs-6" style="margin-top: 30px;">
+                          <button type="button" id="submit-button" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="page">
-                <div class="title">
-                    Select Operations:
-                </div>
-                <div class="field">
-                    <div class="label">
-                    Operations Types
-                    </div>
-                    <select>
-                        <option value="">--Select--</option>
-                        <option value="E-Commerce">E-Commerce</option>
-                        <option value="Tanker">Tanker</option>
-                        <option value="Mining">Mining</option>
-                        <option value="Stone Quarry">Stone Quarry</option>
-                    </select>
-                </div>
-                <div class="field btns">
-                    <button class="prev-1 prev">Previous</button>
-                    <button class="next-1 next">Next</button>
-                </div>
-            </div>
-            <div class="page">
-                <div class="title">
-                    Vehicle Info:
-                </div>
-                <div class="field">
-                    <div class="label">
-                        Vehicle Types
-                    </div>
-                    <select>
-                        <option value="">--Select--</option>
-                        <option value="Truck">Truck</option>
-                        <option value="Tractor">Tractor</option>
-                        <option value="Tipper">Tipper</option>
-                    </select>
-                </div>
-                <div class="field btns">
-                    <button class="prev-2 prev">Previous</button>
-                    <button class="next-2 next">Next</button>
-                </div>
-            </div>
-            <div class="page">
-                <div class="title">
-                    Weight Info:
-                </div>
-                <div class="field">
-                    <div class="label">
-                        Weight Types
-                    </div>
-                    <select>
-                        <option value="">--Select--</option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                    </select>
-                </div>
-                <div class="field btns">
-                    <button class="prev-3 prev">Previous</button>
-                    <button class="next-3 next">Next</button>
-                </div>
-            </div>
-            <div class="page">
-                <div class="title">
-                    Login Details:
-                </div>
-                <div class="field">
-                    <div class="label">
-                        Username
-                    </div>
-                    <input type="text">
-                </div>
-                <div class="field">
-                    <div class="label">
-                        Password
-                    </div>
-                    <input type="password">
-                </div>
-                <div class="field btns">
-                    <button class="prev-4 prev">Previous</button>
-                    <button class="submit">Submit</button>
-                </div>
-            </div>
-            </form>
         </div>
-    </div>
-                    
-          
+
+        <!-- form -->
+        <div class="container" style="background-color: #fff; margin-top:30px;max-width: 95%;border-radius: 20px;">
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="panel">
+                      <div class="panel-body">
+                          <form id="registration_form">
+                              <center>
+                                  <ul class="nav nav-pills" role="tablist" style="margin-top: 15px;justify-content: center;">
+                                      <li role="presentation" class="nav-item">
+                                          <a href="#dr" aria-controls="home" role="tab" data-toggle="tab" class="nav-link active">Engine</a>
+                                      </li>
+                                      <li role="presentation" class="nav-item">
+                                          <a href="#dr0" aria-controls="DR0" role="tab" data-toggle="tab" class="nav-link">PowerTrain</a>
+                                      </li>
+                                      <li role="presentation" class="nav-item">
+                                        <a href="#dr4" aria-controls="" role="tab" data-toggle="tab" class="nav-link">Axle</a>
+                                    </li>
+                                      <li role="presentation" class="nav-item">
+                                          <a href="#dr1" aria-controls="DR1" role="tab" data-toggle="tab" class="nav-link">Chassis</a>
+                                      </li>
+                                      <li role="presentation" class="nav-item">
+                                          <a href="#dr2" aria-controls="DR2" role="tab" data-toggle="tab" class="nav-link">E&E</a>
+                                      </li>
+                                      <li role="presentation" class="nav-item">
+                                          <a href="#dr3" aria-controls="DR2" role="tab" data-toggle="tab" class="nav-link">Cabin Type</a>
+                                      </li>
+                                  </ul>
+                              </center>
+                              <div class="tab-content mt-4">
+                                  <div role="tabpanel" class="tab-pane fade show active" id="dr">
+                                      <div class="row">
+                                          <div class="col-md-12">
+                                            <label for="Engine" style="margin-top: 30px;font-weight: bold;font-size: larger;">Engine</label>
+                                            <!-- Engine Cards -->
+                                            <div class="container-fluid mt-4">
+                                                <div class="row justify-content-center">
+                                                  <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                    <div class="card">
+                                                      <div class="image-container">
+                                                        <img src="img/Picture4.png" class="card-img-top" alt="Card Image 1">
+                                                      </div>
+                                                        <div class="card-body">
+                                                            <h6 class="card-title">Engine Type: CUMMINS ISBe6.7 300hp BSVI</h6>
+                                                            <p class="card-text">Cost:-754286.91</p>
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            <div class="form-check">
+                                                                <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                                <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                    <div class="card">
+                                                      <div class="image-container">
+                                                        <img src="img/Picture1.png" class="card-img-top" alt="Card Image 1">
+                                                      </div>
+                                                        <div class="card-body">
+                                                            <h6 class="card-title">Engine Type: Cummins Isbe 6.7L 250HP OBD-II</h6>
+                                                            <p class="card-text">Cost:-754287.00</p>
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            <div class="form-check">
+                                                                <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                                <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                  </div>
+                                                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                        <div class="card">
+                                                          <div class="image-container">
+                                                            <img src="img/Picture4.png" class="card-img-top" alt="Card Image 1">
+                                                          </div>
+                                                            <div class="card-body">
+                                                                <h6 class="card-title">Engine Type: CUMMINS ISBe6.7 300hp BSVI</h6>
+                                                                <p class="card-text">Cost:-791892.77</p>
+                                                            </div>
+                                                            <div class="card-footer">
+                                                                <div class="form-check">
+                                                                    <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                                    <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                      <div class="card">
+                                                        <div class="image-container">
+                                                          <img src="img/Picture1.png" class="card-img-top" alt="Card Image 1">
+                                                        </div>
+                                                          <div class="card-body">
+                                                              <h6 class="card-title">Engine Type: Cummins Isbe 6.7L 250HP OBD-II</h6>
+                                                              <p class="card-text">Cost:-791892.77</p>
+                                                          </div>
+                                                          <div class="card-footer">
+                                                              <div class="form-check">
+                                                                  <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                                  <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                    <!-- Add more cards as needed -->
+                                                </div>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      <div class="text-center mt-2">
+                                        <button type="button" class="btn btn-primary" onclick="window.location.href='last.html'">
+                                            Submit
+                                        </button>
+                                    </div>
+                                  </div>
   
-      <script>
-        const slidePage = document.querySelector(".slide-page");
-        const nextBtnFirst = document.querySelector(".firstNext");
-        const prevBtnSec = document.querySelector(".prev-1");
-        const nextBtnSec = document.querySelector(".next-1");
-        const prevBtnThird = document.querySelector(".prev-2");
-        const nextBtnThird = document.querySelector(".next-2");
-        const nextBtnFourth = document.querySelector(".next-3");
-        const prevBtnFourth = document.querySelector(".prev-3");
-        const submitBtn = document.querySelector(".submit");
-        const progressText = document.querySelectorAll(".step p");
-        const progressCheck = document.querySelectorAll(".step .check");
-        const bullet = document.querySelectorAll(".step .bullet");
-        let current = 1;
+                                  <div role="tabpanel" class="tab-pane fade" id="dr0">
+                                      <div class="row">
+                                          <div class="col-md-12">
+                                            <label for="PowerTrain" style="margin-top: 30px;font-weight: bold;font-size: larger;">TRANSMISSION</label>
+                                            <!-- Gear Cards -->
+                                            <div class="container-fluid mt-4">
+                                                <div class="row justify-content-center">
+                                                  <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                    <div class="card">
+                                                      <div class="image-container">
+                                                        <img src="img/Picture2.png" class="card-img-top" alt="Card Image 1">
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                  <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                    <div class="card">
+                                                      <div class="image-container">
+                                                        <img src="img/Picture3.png" class="card-img-top" alt="Card Image 1">
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card">
+                                                    <div class="image-container">
+                                                      <img src="img/Picture5.png" class="card-img-top" alt="Card Image 1">
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                        <div class="card">
+                                                          <div class="image-container">
+                                                            <img src="img/Picture3.png" class="card-img-top" alt="Card Image 1">
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Add more cards as needed -->
+                                                </div>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-md-12">
+                                          <label for="PowerTrain" style="margin-top: 30px;font-weight: bold;font-size: larger;">TRANSMISSION</label>
+                                          <!-- Gear Cards -->
+                                          <div class="container-fluid mt-4">
+                                              <div class="row justify-content-center">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                      <h6 class="card-title">Gear Type:</h6>
+                                                      <p class="card-text">Cost:-377487.81</p>
+                                                  </div>
+                                                  <div class="card-footer">
+                                                      <div class="form-check">
+                                                          <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                          <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                      <h6 class="card-title">Gear Type:TATA G1150_DD with PTO</h6>
+                                                      <p class="card-text">Cost:-135802.25</p>
+                                                  </div>
+                                                  <div class="card-footer">
+                                                      <div class="form-check">
+                                                          <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                          <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <h6 class="card-title">Gear Type: TATA G1150_DD</h6>
+                                                    <p class="card-text">Cost:-148313.11</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                  <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Gear Type:TATA G1150_DD with PTO</h6>
+                                                        <p class="card-text">Cost:-149065.68</p>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <div class="form-check">
+                                                            <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                            <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                        </div>
+                                                    </div>
+                                                  </div>
+                                                  <!-- Add more cards as needed -->
+                                              </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <label for="PowerTrain" style="margin-top: 30px;font-weight: bold;font-size: larger;">PowerTrain</label>
+                                        <!-- Gear Cards -->
+                                        <div class="container-fluid mt-4">
+                                            <div class="row justify-content-center">
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <h6 class="card-title">Gear Type:TATA G950 DD</h6>
+                                                    <p class="card-text">Cost:-377487.81</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <h6 class="card-title">Gear Type:TATA G1150_DD with PTO</h6>
+                                                    <p class="card-text">Cost:-135802.25</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                              <div class="card-body">
+                                                  <h6 class="card-title">Gear Type: TATA G1150_DD</h6>
+                                                  <p class="card-text">Cost:-148313.11</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                              <div class="card-body">
+                                                  <h6 class="card-title">Gear Type:TATA G1150_DD with PTO</h6>
+                                                  <p class="card-text">Cost:-149065.68</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                                <!-- Add more cards as needed -->
+                                            </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                                      <div class="text-center mt-2">
+                                        <button type="button" class="btn btn-primary" onclick="window.location.href='last.html'">
+                                            Submit
+                                        </button>
+                                    </div>
+                                  </div>
 
-        nextBtnFirst.addEventListener("click", function(event){
-        event.preventDefault();
-        slidePage.style.marginLeft = "-25%";
-        bullet[current - 1].classList.add("active");
-        progressCheck[current - 1].classList.add("active");
-        progressText[current - 1].classList.add("active");
-        current += 1;
-        });
-        nextBtnSec.addEventListener("click", function(event){
-        event.preventDefault();
-        slidePage.style.marginLeft = "-50%";
-        bullet[current - 1].classList.add("active");
-        progressCheck[current - 1].classList.add("active");
-        progressText[current - 1].classList.add("active");
-        current += 1;
-        });
-        nextBtnThird.addEventListener("click", function(event){
-        event.preventDefault();
-        slidePage.style.marginLeft = "-75%";
-        bullet[current - 1].classList.add("active");
-        progressCheck[current - 1].classList.add("active");
-        progressText[current - 1].classList.add("active");
-        current += 1;
-        });
-        submitBtn.addEventListener("click", function(){
-        bullet[current - 1].classList.add("active");
-        progressCheck[current - 1].classList.add("active");
-        progressText[current - 1].classList.add("active");
-        current += 1;
-        setTimeout(function(){
-        alert("Your Form Successfully Signed up");
-        location.reload();
-        },800);
-        });
+                                  <!-- tab inside tab  -->
+                                  <!-- <div role="tabpanel" class="tab-pane fade" id="dr4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="axle" style="margin-top: 30px;font-weight: bold;font-size: larger;">Axle</label>
+                                            <ul class="nav nav-tabs mt-3" role="tablist">
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="#front-axle" aria-controls="front-axle" role="tab" data-toggle="tab" class="nav-link active">Front Axle</a>
+                                                </li>
+                                                <li role="presentation" class="nav-item">
+                                                    <a href="#rear-axle" aria-controls="rear-axle" role="tab" data-toggle="tab" class="nav-link">Rear Axle</a>
+                                                </li>
+                                            </ul>
+                                
+                                          
+                                            <div class="tab-content mt-4">
+                                                
+                                                <div role="tabpanel" class="tab-pane fade show active" id="front-axle">
+                                                    <div class="container-fluid">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                                <div class="card">
+                                                                    <div class="image-container">
+                                                                        <img src="img/front-axle1.png" class="card-img-top" alt="Front Axle Image 1">
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <h6 class="card-title">Axle Type: Example 1</h6>
+                                                                        <p class="card-text">Cost: $1000</p>
+                                                                    </div>
+                                                                    <div class="card-footer">
+                                                                        <div class="form-check">
+                                                                            <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                                            <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+                                                <div role="tabpanel" class="tab-pane fade" id="rear-axle">
+                                                    <div class="container-fluid">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                                <div class="card">
+                                                                    <div class="image-container">
+                                                                        <img src="img/rear-axle1.png" class="card-img-top" alt="Rear Axle Image 1">
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <h6 class="card-title">Axle Type: Example 2</h6>
+                                                                        <p class="card-text">Cost: $1500</p>
+                                                                    </div>
+                                                                    <div class="card-footer">
+                                                                        <div class="form-check">
+                                                                            <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                                            <label class="form-check-label" for="cardCheckbox2">Select</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="text-center mt-2">
+                                                <button type="button" class="btn btn-primary" onclick="window.location.href='last.html'">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
 
-        prevBtnSec.addEventListener("click", function(event){
-        event.preventDefault();
-        slidePage.style.marginLeft = "0%";
-        bullet[current - 2].classList.remove("active");
-        progressCheck[current - 2].classList.remove("active");
-        progressText[current - 2].classList.remove("active");
-        current -= 1;
-        });
-        prevBtnThird.addEventListener("click", function(event){
-        event.preventDefault();
-        slidePage.style.marginLeft = "-25%";
-        bullet[current - 2].classList.remove("active");
-        progressCheck[current - 2].classList.remove("active");
-        progressText[current - 2].classList.remove("active");
-        current -= 1;
-        });
-        prevBtnFourth.addEventListener("click", function(event){
-        event.preventDefault();
-        slidePage.style.marginLeft = "-50%";
-        bullet[current - 2].classList.remove("active");
-        progressCheck[current - 2].classList.remove("active");
-        progressText[current - 2].classList.remove("active");
-        current -= 1;
-        });
-      </script>
-   </body>
+                                <div role="tabpanel" class="tab-pane fade" id="dr4">
+                                  <div class="row">
+                                      <div class="col-md-12">
+                                        <label for="Axle" style="margin-top: 30px;font-weight: bold;font-size: larger;">Axle</label>
+                                        <!-- Gear Cards -->
+                                        <div class="container-fluid mt-4">
+                                            <div class="row justify-content-center">
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card">
+                                                  <div class="image-container">
+                                                    <img id="axleImage" src="img/axle1.png" class="card-img-top" alt="Card Image 1">
+                                                  </div>
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Axle Type:7 Ton Front Axle & Rear Axle - RA 109 SRT</h6>
+                                                        <p class="card-text">Cost:-</p>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <div class="form-check">
+                                                            <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                            <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card">
+                                                  <div class="image-container">
+                                                    <img id="axleImage" src="img/axle2.png" class="card-img-top" alt="Card Image 1">
+                                                  </div>
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Axle Type:7.5 Ton Front Axle & Rear Axle - RA 109 SRT</h6>
+                                                        <p class="card-text">Cost:-</p>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <div class="form-check">
+                                                            <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                            <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                              <div class="card">
+                                                <div class="image-container">
+                                                  <img src="img/axle3.png" class="card-img-top" alt="Card Image 1">
+                                                </div>
+                                                  <div class="card-body">
+                                                      <h6 class="card-title">Axle Type:7 Ton Front Axle & Rear Axle - RA 110 LD & RA 910</h6>
+                                                      <p class="card-text">Cost:-</p>
+                                                  </div>
+                                                  <div class="card-footer">
+                                                      <div class="form-check">
+                                                          <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                          <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card">
+                                                    <div class="image-container">
+                                                      <img src="img/axle4.png" class="card-img-top" alt="Card Image 1">
+                                                    </div>
+                                                      <div class="card-body">
+                                                          <h6 class="card-title">Axle Type:7.5 Ton Front Axle & Rear Axles - RA 110 HD & RA 910</h6>
+                                                          <p class="card-text">Cost:-</p>
+                                                      </div>
+                                                      <div class="card-footer">
+                                                          <div class="form-check">
+                                                              <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                              <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                                <!-- Add more cards as needed -->
+                                            </div>
+                                        </div>
+                                      </div>
+                                  </div>
+              
+                                  <div class="text-center mt-2">
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href='last.html'">
+                                        Submit
+                                    </button>
+                                </div>
+                              </div>
+
+                                <!-- CHASSIS -->
+                                <div role="tabpanel" class="tab-pane fade" id="dr1">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">CHASSIS</label>
+                                        <!-- Cabin Cards -->
+                                        <div class="container-fluid mt-4">
+                                            <div class="row justify-content-center">
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card">
+                                                  <div class="image-container">
+                                                    <img src="img/chassis.png" class="card-img-top" alt="Card Image 1">
+                                                  </div>
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6>
+                                                        <!-- <p class="card-text">Cost:-735690.76</p> -->
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <div class="form-check">
+                                                            <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                            <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card">
+                                                    <div class="image-container">
+                                                      <img src="img/chassis2.png" class="card-img-top" alt="Card Image 1">
+                                                    </div>
+                                                      <div class="card-body">
+                                                          <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6>
+                                                          <!-- <p class="card-text">Cost:-591923.04</p> -->
+                                                      </div>
+                                                      <div class="card-footer">
+                                                          <div class="form-check">
+                                                              <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                              <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card">
+                                                    <div class="image-container">
+                                                      <img src="img/chassis2.png" class="card-img-top" alt="Card Image 1">
+                                                    </div>
+                                                      <div class="card-body">
+                                                          <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6>
+                                                          <!-- <p class="card-text">Cost:-985376.02</p> -->
+                                                      </div>
+                                                      <div class="card-footer">
+                                                          <div class="form-check">
+                                                              <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                              <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                    <div class="card">
+                                                      <div class="image-container">
+                                                        <img src="img/chassis1.png" class="card-img-top" alt="Card Image 1">
+                                                      </div>
+                                                        <div class="card-body">
+                                                            <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6>
+                                                            <!-- <p class="card-text">Cost:-930835.58</p> -->
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            <div class="form-check">
+                                                                <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                                <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Add more cards as needed -->
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">CHASSIS INTEGRATION AGGREGATES</label>
+                                        <!-- Cabin Cards -->
+                                        <div class="container-fluid mt-4">
+                                            <div class="row justify-content-center">
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                  </div>
+                                                  <div class="card-footer">
+                                                      <div class="form-check">
+                                                          <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                          <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                                <!-- Add more cards as needed -->
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">DRIVELINE INTEGRATION AGGREGATES</label>
+                                        <!-- Cabin Cards -->
+                                        <div class="container-fluid mt-4">
+                                            <div class="row justify-content-center">
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                  </div>
+                                                  <div class="card-footer">
+                                                      <div class="form-check">
+                                                          <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                          <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                                <!-- Add more cards as needed -->
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">ENGINE INTEGRATION AGGREGATES</label>
+                                        <!-- Cabin Cards -->
+                                        <div class="container-fluid mt-4">
+                                            <div class="row justify-content-center">
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                  </div>
+                                                  <div class="card-footer">
+                                                      <div class="form-check">
+                                                          <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                          <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                                <!-- Add more cards as needed -->
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">REAR SUSPENSION</label>
+                                        <!-- Cabin Cards -->
+                                        <div class="container-fluid mt-4">
+                                            <div class="row justify-content-center">
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                  </div>
+                                                  <div class="card-footer">
+                                                      <div class="form-check">
+                                                          <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                          <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                                <!-- Add more cards as needed -->
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">FRONT SUSPENSION</label>
+                                        <!-- Cabin Cards -->
+                                        <div class="container-fluid mt-4">
+                                            <div class="row justify-content-center">
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                  </div>
+                                                  <div class="card-footer">
+                                                      <div class="form-check">
+                                                          <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                          <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                                <!-- Add more cards as needed -->
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">BRAKES & WHEELS</label>
+                                        <!-- Cabin Cards -->
+                                        <div class="container-fluid mt-4">
+                                            <div class="row justify-content-center">
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card-body">
+                                                    <!-- <h6 class="card-title">Chassis Type:Ladder Type Frame Assembly</h6> -->
+                                                    <p class="card-text">Cost:-735690.76</p>
+                                                  </div>
+                                                  <div class="card-footer">
+                                                      <div class="form-check">
+                                                          <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                          <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                                <!-- Add more cards as needed -->
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="text-center mt-2">
+                                      <button type="button" class="btn btn-primary" onclick="window.location.href='last.html'">
+                                          Submit
+                                      </button>
+                                  </div>
+                                </div>
+
+                                <!-- E&E -->
+                                <div role="tabpanel" class="tab-pane fade" id="dr2">
+                                  <div class="row">
+                                      <div class="col-md-12">
+                                        <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">E&E</label>
+                                        <!-- Cabin Cards -->
+                                        <div class="container-fluid mt-4">
+                                            <div class="row justify-content-center">
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card">
+                                                  <div class="image-container">
+                                                    <img src="img/e.png" class="card-img-top" alt="Card Image 1">
+                                                  </div>
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6>
+                                                        <!-- <p class="card-text">Cost:-60735.851</p> -->
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <div class="form-check">
+                                                            <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                            <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card">
+                                                    <div class="image-container">
+                                                      <img src="img/eee.png" class="card-img-top" alt="Card Image 1">
+                                                    </div>
+                                                      <div class="card-body">
+                                                          <h6 class="card-title">E&E Type:Bluetooth Music System, Voice Messaging System, Regular Safety Features</h6>
+                                                          <!-- <p class="card-text">Cost:-50000.26</p> -->
+                                                      </div>
+                                                      <div class="card-footer">
+                                                          <div class="form-check">
+                                                              <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                              <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card">
+                                                    <div class="image-container">
+                                                      <img src="img/e.png" class="card-img-top" alt="Card Image 1">
+                                                    </div>
+                                                      <div class="card-body">
+                                                          <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6>
+                                                          <!-- <p class="card-text">Cost:-46087.151</p> -->
+                                                      </div>
+                                                      <div class="card-footer">
+                                                          <div class="form-check">
+                                                              <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                              <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                    <div class="card">
+                                                      <div class="image-container">
+                                                        <img src="img/eee.png" class="card-img-top" alt="Card Image 1">
+                                                      </div>
+                                                        <div class="card-body">
+                                                            <h6 class="card-title">E&E Type:Bluetooth Music System, Voice Messaging System, Regular Safety Features</h6>
+                                                            <!-- <p class="card-text">Cost:-44538.069</p> -->
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            <div class="form-check">
+                                                                <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                                <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Add more cards as needed -->
+                                            </div>
+                                        </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">POWER AND DISTRIBUTION</label>
+                                      <!-- Cabin Cards -->
+                                      <div class="container-fluid mt-4">
+                                          <div class="row justify-content-center">
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                              <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                              </div>
+                                              <!-- Add more cards as needed -->
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">LIGHTINGS</label>
+                                      <!-- Cabin Cards -->
+                                      <div class="container-fluid mt-4">
+                                          <div class="row justify-content-center">
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                              <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                              </div>
+                                              <!-- Add more cards as needed -->
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">HMI & CONNECTIVITY</label>
+                                      <!-- Cabin Cards -->
+                                      <div class="container-fluid mt-4">
+                                          <div class="row justify-content-center">
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                              <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                              </div>
+                                              <!-- Add more cards as needed -->
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">CONTROLLERS</label>
+                                      <!-- Cabin Cards -->
+                                      <div class="container-fluid mt-4">
+                                          <div class="row justify-content-center">
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                              <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                  <!-- <h6 class="card-title">E&E Type:7inch Infotainment, Steering Mounted Switches, Premium Safety Features</h6> -->
+                                                  <p class="card-text">Cost:-60735.851</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                              </div>
+                                              <!-- Add more cards as needed -->
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="text-center mt-2">
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href='last.html'">
+                                        Submit
+                                    </button>
+                                </div>
+                                </div>
+
+                                <!-- cabin -->
+                                <div role="tabpanel" class="tab-pane fade" id="dr3">
+                                  <div class="row">
+                                      <div class="col-md-12">
+                                        <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">CABIN</label>
+                                        <!-- Cabin Cards -->
+                                        <div class="container-fluid mt-4">
+                                            <div class="row justify-content-center">
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card">
+                                                  <div class="image-container">
+                                                    <img src="img/Picture7.png" class="card-img-top" alt="Card Image 1">
+                                                  </div>
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Cabin Type:SIGNA FACELIFT CAB SLPR</h6>
+                                                        <!-- <p class="card-text">Cost:-268038.32</p> -->
+                                                    </div>
+                                                </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card">
+                                                    <div class="image-container">
+                                                      <img src="img/Picture6.png" class="card-img-top" alt="Card Image 1">
+                                                    </div>
+                                                      <div class="card-body">
+                                                          <h6 class="card-title">Cabin Type:1516 FACE SLP COWL</h6>
+                                                          <!-- <p class="card-text">Cost:-251855.39</p> -->
+                                                      </div>
+                                                      
+                                                  </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                  <div class="card">
+                                                    <div class="image-container">
+                                                      <img src="img/Picture7.png" class="card-img-top" alt="Card Image 1">
+                                                    </div>
+                                                      <div class="card-body">
+                                                          <h6 class="card-title">CAbin Type:SIGNA FACELIFT CAB SLPR</h6>
+                                                          <!-- <p class="card-text">Cost:-220065.81</p> -->
+                                                      </div>
+                                                     
+                                                  </div>
+                                              </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                    <div class="card">
+                                                      <div class="image-container">
+                                                        <img src="img/image.png" class="card-img-top" alt="Card Image 1">
+                                                      </div>
+                                                        <div class="card-body">
+                                                            <h6 class="card-title">Cabin Type:SIGNA FACELIFT NON SLPR</h6>
+                                                            <!-- <p class="card-text">Cost:-228324.95</p> -->
+                                                        </div>
+                                                       
+                                                    </div>
+                                                </div>
+                                                <!-- Add more cards as needed -->
+                                            </div>
+                                        </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">BIW</label>
+                                      <!-- Cabin Cards -->
+                                      <div class="container-fluid mt-4">
+                                          <div class="row justify-content-center">
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                              <div class="card-body">
+                                                  <!-- <h6 class="card-title">Cabin Type:SIGNA FACELIFT CAB SLPR</h6> -->
+                                                  <p class="card-text">Cost:-268038.32</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                    <div class="card-body">
+                                                        <!-- <h6 class="card-title">Cabin Type:1516 FACE SLP COWL</h6> -->
+                                                        <p class="card-text">Cost:-251855.39</p>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <div class="form-check">
+                                                            <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                            <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                        </div>
+                                                    </div>
+                                                
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <!-- <h6 class="card-title">CAbin Type:SIGNA FACELIFT CAB SLPR</h6> -->
+                                                    <p class="card-text">Cost:-220065.81</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <!-- <h6 class="card-title">Cabin Type:SIGNA FACELIFT NON SLPR</h6> -->
+                                                    <p class="card-text">Cost:-228324.95</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                              <!-- Add more cards as needed -->
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">EXTERIOR</label>
+                                      <!-- Cabin Cards -->
+                                      <div class="container-fluid mt-4">
+                                          <div class="row justify-content-center">
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                              <div class="card-body">
+                                                  <!-- <h6 class="card-title">Cabin Type:SIGNA FACELIFT CAB SLPR</h6> -->
+                                                  <p class="card-text">Cost:-268038.32</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                    <div class="card-body">
+                                                        <!-- <h6 class="card-title">Cabin Type:1516 FACE SLP COWL</h6> -->
+                                                        <p class="card-text">Cost:-251855.39</p>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <div class="form-check">
+                                                            <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                            <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                        </div>
+                                                    </div>
+                                                
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <!-- <h6 class="card-title">CAbin Type:SIGNA FACELIFT CAB SLPR</h6> -->
+                                                    <p class="card-text">Cost:-220065.81</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <!-- <h6 class="card-title">Cabin Type:SIGNA FACELIFT NON SLPR</h6> -->
+                                                    <p class="card-text">Cost:-228324.95</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                              <!-- Add more cards as needed -->
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">INTERIOR</label>
+                                      <!-- Cabin Cards -->
+                                      <div class="container-fluid mt-4">
+                                          <div class="row justify-content-center">
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                              <div class="card-body">
+                                                  <!-- <h6 class="card-title">Cabin Type:SIGNA FACELIFT CAB SLPR</h6> -->
+                                                  <p class="card-text">Cost:-268038.32</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                    <div class="card-body">
+                                                        <!-- <h6 class="card-title">Cabin Type:1516 FACE SLP COWL</h6> -->
+                                                        <p class="card-text">Cost:-251855.39</p>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <div class="form-check">
+                                                            <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                            <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                        </div>
+                                                    </div>
+                                                
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <!-- <h6 class="card-title">CAbin Type:SIGNA FACELIFT CAB SLPR</h6> -->
+                                                    <p class="card-text">Cost:-220065.81</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <!-- <h6 class="card-title">Cabin Type:SIGNA FACELIFT NON SLPR</h6> -->
+                                                    <p class="card-text">Cost:-228324.95</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                              <!-- Add more cards as needed -->
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <label for="Cabin" style="margin-top: 30px;font-weight: bold;font-size: larger;">VENTILATION SYSTEM</label>
+                                      <!-- Cabin Cards -->
+                                      <div class="container-fluid mt-4">
+                                          <div class="row justify-content-center">
+                                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                              <div class="card-body">
+                                                  <!-- <h6 class="card-title">Cabin Type:SIGNA FACELIFT CAB SLPR</h6> -->
+                                                  <p class="card-text">Cost:-268038.32</p>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <div class="form-check">
+                                                      <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                      <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                    <div class="card-body">
+                                                        <!-- <h6 class="card-title">Cabin Type:1516 FACE SLP COWL</h6> -->
+                                                        <p class="card-text">Cost:-251855.39</p>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <div class="form-check">
+                                                            <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                            <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                        </div>
+                                                    </div>
+                                                
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <!-- <h6 class="card-title">CAbin Type:SIGNA FACELIFT CAB SLPR</h6> -->
+                                                    <p class="card-text">Cost:-220065.81</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                              <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                                <div class="card-body">
+                                                    <!-- <h6 class="card-title">Cabin Type:SIGNA FACELIFT NON SLPR</h6> -->
+                                                    <p class="card-text">Cost:-228324.95</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" name="cardSelect" class="card-checkbox" onclick="selectOnlyThis(this)">
+                                                        <label class="form-check-label" for="cardCheckbox1">Select</label>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                              <!-- Add more cards as needed -->
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                              
+                                    <div class="text-center mt-2">
+                                      <button type="button" class="btn btn-primary" onclick="window.location.href='last.html'">
+                                        Submit
+                                      </button>
+                                    </div>
+                                </div>
+
+                                
+                              </div>
+                          </form>
+                      </div>
+                      <div class="box-body" id="map-body"></div>
+                      <div id="div1"></div>
+                      <br>
+                      <div class="box-footer"></div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        
+      </section>
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      
+    <script>
+    //     $(document).ready(function(){
+    //   var current = 1,current_step,next_step,steps;
+    //   steps = $("fieldset").length;
+    //   $(".next").click(function(){
+    //     current_step = $(this).parent();
+    //     next_step = $(this).parent().next();
+    //     next_step.show();
+    //     current_step.hide();
+    //     setProgressBar(++current);
+    //   });
+    //   $(".previous").click(function(){
+    //     current_step = $(this).parent();
+    //     console.log(current_step);
+    //     next_step = $(this).parent().prev();
+    //     console.log(next_step);
+    //     next_step.show();
+    //     current_step.hide();
+    //     setProgressBar(--current);
+    //   });
+    //   setProgressBar(current);
+    //   // Change progress bar action
+    //   function setProgressBar(curStep){
+    //     var percent = parseFloat(100 / steps) * curStep;
+    //     percent = percent.toFixed();
+    //     $(".progress-bar")
+    //       .css("width",percent+"%")
+    //       .html(percent+"%");   
+    //   }
+    // });
+
+    // function submitForm() {
+    //         var selectedCheckbox = document.querySelector('input[name="cardSelect"]:checked');
+    //         if (selectedCheckbox) {
+    //             // Logic to navigate to the next page or handle form data
+    //             window.location.href = "last.html"; // Replace with your next page URL
+    //             return false; // Prevent default form submission
+    //         } else {
+    //             alert('Please select a card before submitting.');
+    //             return false; 
+    //         }
+    //     }
+
+    // check boc logic
+    function selectOnlyThis(checkbox) {
+      const checkboxes = document.querySelectorAll('.card-checkbox');
+      checkboxes.forEach((cb) => {
+        if (cb !== checkbox) cb.checked = false;
+      });
+    }
+
+
+     </script>
+</body>
 </html>
